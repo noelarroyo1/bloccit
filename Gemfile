@@ -47,3 +47,7 @@ group :development, :test do
 end
 
 gem 'bootstrap-sass'
+
+group :development do
+  gem 'pry-rails'
+end
