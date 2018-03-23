@@ -3,7 +3,7 @@
   <div class="media">
     <div class="media-body">
       <h4 class="media-heading">
-        <%= link_to advertisement_path(advertisement.id) %>
+        <%= link_to "#{advertisement.title}: $#{advertisement.price}", advertisement_path(advertisement.id) %>
       </h4>
     </div>
   </div>
