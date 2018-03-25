@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe AdvertisementController, type: :controller do
+RSpec.describe AdvertisementsController, type: :controller do
   let (:my_advertisement) { Advertisement.create!(title: RandomData.random_sentence, copy: RandomData.random_paragraph, price: 10) }
 
   describe "GET #index" do
@@ -12,13 +12,23 @@ RSpec.describe AdvertisementController, type: :controller do
 
     it "assigns [my_advertisement] to @advertisements" do
       get :index
-      expect(assigns(:advertisement)).to eq([my_advertisement])
+      expect(assigns(:advertisements)).to eq([my_advertisement])
     end
 
   describe "GET #show" do
     it "returns http success" do
-      get :show
+      get :show, params: { id: my_advertisement.id }
       expect(response).to have_http_status(:success)
+    end
+
+    it "renders the #show view" do
+      get :show, params: { id: my_advertisement.id }
+      expect(response).to render_template :show
+    end
+
+    it "assigns my_advertisement to @advertisement" do
+      get :show, params: { id: my_advertisement.id }
+      expect(assigns(:advertisement)).to eq(my_advertisement)
     end
   end
 
@@ -47,13 +57,13 @@ RSpec.describe AdvertisementController, type: :controller do
   end
 
   describe "POST create" do
-    it "increases the number of advertisements by 1" do
+    it "increases the number of Advertisements by 1" do
       expect{ post :create, advertisement: { title: RandomData.random_sentence, copy: RandomData.random_paragraph, price: 10 } }.to change(Advertisement, :count).by(1)
     end
 
     it "assigns the new advertisement to @advertisement" do
       post :create, advertisement: { title: RandomData.random_sentence, copy: RandomData.random_paragraph, price: 10 }
-      expect(assigns(:post)).to eq Advertisement.last
+      expect(assigns(:advertisement)).to eq Advertisement.last
     end
 
    it "redirects to the new advertisement" do
