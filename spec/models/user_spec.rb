@@ -23,6 +23,15 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe "correct name output" do
+    it "makes user name capitalized" do
+      user.name("noel arroyo")
+      name.save
+
+      expect(user.name).to eq("Noel Arroyo")
+    end
+  end
+
   describe "invalid user" do
     let(:user_with_invalid_name) { User.new(name: "", email: "user@bloccit.com") }
     let(:user_with_invalid_email) { User.new(name: "Bloccit User", email: "") }
@@ -35,5 +44,5 @@ RSpec.describe User, type: :model do
       expect(user_with_invalid_email).to_not be_valid
     end
   end
-  
+
 end
