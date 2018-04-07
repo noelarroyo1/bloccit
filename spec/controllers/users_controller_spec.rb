@@ -18,7 +18,7 @@ RSpec.describe UsersController, type: :controller do
 
     it "instantiates a new user" do
       get :new
-      expect(assigns(:user).to_not be_nil)
+      expect(assigns(:user)).to_not be_nil
     end
   end
 
@@ -56,7 +56,7 @@ RSpec.describe UsersController, type: :controller do
 
     it "logs the user in after sign up" do
       post :create, params: { user: new_user_attributes }
-      expect(session[:user_id]).to eq assigns(:user).id  
+      expect(session[:user_id]).to eq assigns(:user).id
     end
   end
 
