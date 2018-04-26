@@ -49,5 +49,8 @@ end
 
 gem 'bootstrap-sass'
 
-# Used for encrypting passwords 
+# Used for encrypting passwords
 gem 'bcrypt'
+
+# Using figaro to hide important info
+gem 'figaro', '1.0'

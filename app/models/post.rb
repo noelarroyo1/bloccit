@@ -3,6 +3,7 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many :comments, dependent: :destroy
   has_many :votes, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
 # The default_scope will order all posts by their created_at date,
 # in descending order, with the most recent posts displayed first.
