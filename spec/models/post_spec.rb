@@ -73,5 +73,12 @@ RSpec.describe Post, type: :model do
         expect(post.rank).to eq(old_rank - 1)
       end
     end
+
+    describe "after_create" do
+      it 'creates a favorite for the current user and specified post' do
+        post :create, params: { post_id: my_post.id }
+        expect(my_user.favorites.find_by_post_id(my_post.id)).not_to be_nil
+      end
+    end
   end
 end
