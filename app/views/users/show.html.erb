@@ -29,10 +29,13 @@
   <%= render @user.comments %>
 
   <h2> Favorited Posts </h2>
-  <% avatar_url_favorite = @post.avatar_url(20) %>
-  <%= render @post.favorite %> <%= image_tag avatar_url_favorite, class: 'media-object' %>
-  <small>
-    <%= pluralize(@user.votes.count, 'votes') %>,
-    <%= pluralize(@user.comments.count, 'comment') %>
-  </small>
+  <% current_user.favorites.each do |favorite| %>
+    <% avatar_url_favorite = favorite.avatar_url(20) %>
+    <%= render favorite %> <%= image_tag avatar_url_favorite, class: 'media-object' %>
+    <small>
+      <%= favorite.post.author %>
+      <%= pluralize(favorite.post.votes.count, 'votes') %>,
+      <%= pluralize(favorite.post.comments.count, 'comments') %>
+    </small>
+  <% end %>
 <% end %>
